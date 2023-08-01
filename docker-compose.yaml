@@ -17,7 +17,7 @@ services:
       - COUCHDB_USER=admin
       - COUCHDB_PASSWORD=123456
     volumes:
-        - /tmp/couchdb:/opt/couchdb/data
+        - /d/tmp/couchdb:/opt/couchdb/data
     networks:
       - pyspider
   rabbitmq:
