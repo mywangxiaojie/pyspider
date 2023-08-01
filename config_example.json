@@ -1,7 +1,7 @@
 {
-  "taskdb": "couchdb+taskdb://user:password@couchdb:5984",
-  "projectdb": "couchdb+projectdb://user:password@couchdb:5984",
-  "resultdb": "couchdb+resultdb://user:password@couchdb:5984",
+  "taskdb": "couchdb+taskdb://admin:123456@couchdb:5984",
+  "projectdb": "couchdb+projectdb://admin:123456@couchdb:5984",
+  "resultdb": "couchdb+resultdb://admin:123456@couchdb:5984",
   "message_queue": "amqp://rabbitmq:5672/%2F",
   "webui": {
     "username": "username",

@@ -7,6 +7,19 @@ version: "3.7"
 # Once RabbitMQ and CouchDB are fully up and running everything should run as normal.
 
 services:
+  couchdb:
+    image: couchdb:latest
+    restart: always
+    container_name: couchdb
+    ports:
+      - "5984:5984"
+    environment:
+      - COUCHDB_USER=admin
+      - COUCHDB_PASSWORD=123456
+    volumes:
+        - /tmp/couchdb:/opt/couchdb/data
+    networks:
+      - pyspider
   rabbitmq:
     image: rabbitmq:alpine
     container_name: rabbitmq
@@ -17,7 +30,7 @@ services:
     image: mysql:latest
     container_name: mysql
     volumes:
-      - /tmp:/var/lib/mysql
+      - /tmp/mysql8:/var/lib/mysql
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
     networks:
@@ -99,7 +112,4 @@ services:
 
 networks:
   pyspider:
-    external:
-      name: pyspider
-  default:
-    driver: bridge
+    external: true
