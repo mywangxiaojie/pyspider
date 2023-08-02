@@ -33,6 +33,7 @@ install_requires = [
     'wsgidav==2.3.0',
     'tornado>=3.2,<=4.5.3',
     'pyquery',
+    'werkzeug==0.16.0',
 ]
 
 extras_require_all = [
