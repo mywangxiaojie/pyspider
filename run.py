@@ -6,6 +6,7 @@
 # Created on 2014-11-24 23:11:49
 
 from pyspider.run import main
+import os
 
 if __name__ == '__main__':
     main()

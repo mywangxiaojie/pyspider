@@ -7,6 +7,16 @@ version: "3.7"
 # Once RabbitMQ and CouchDB are fully up and running everything should run as normal.
 
 services:
+  nginx:
+    image: nginx
+    container_name: couchdb_nginx
+    ports:
+      - "5980:80"
+    volumes:
+      - "./nginx.conf:/etc/nginx/conf.d/default.conf"
+    restart: always
+    networks:
+      - pyspider
   couchdb:
     image: couchdb:latest
     restart: always

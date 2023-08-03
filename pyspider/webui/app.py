@@ -74,7 +74,7 @@ class QuitableFlask(Flask):
             autoreload.start()
 
         self.logger.info('webui running on %s:%s', hostname, port)
-        print("webui config.......", self.config)
+        # print("webui config.......", self.config)
         self.ioloop = tornado.ioloop.IOLoop.current()
         self.ioloop.start()
 
