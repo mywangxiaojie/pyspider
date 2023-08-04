@@ -89,7 +89,6 @@ def connect_rpc(ctx, param, value):
 @click.version_option(version=pyspider.__version__, prog_name=pyspider.__name__)
 @click.pass_context
 def cli(ctx, **kwargs):
-    print("kwargs info......", kwargs)
     """
     A powerful spider system in python.
     """
@@ -173,7 +172,6 @@ def cli(ctx, **kwargs):
     ctx.obj = utils.ObjectDict(ctx.obj or {})
     ctx.obj['instances'] = []
     ctx.obj.update(kwargs)
-    print("ctx.obj", ctx.obj)
 
     if ctx.invoked_subcommand is None and not ctx.obj.get('testing_mode'):
         ctx.invoke(all)
@@ -529,7 +527,7 @@ def all(ctx, fetcher_num, processor_num, result_worker_num, run_in):
         # phantomjs
         if not g.get('phantomjs_proxy'):
             phantomjs_config = g.config.get('phantomjs', {})
-            phantomjs_config.setdefault('auto_restart', False)
+            phantomjs_config.setdefault('auto_restart', True)
             threads.append(run_in(ctx.invoke, phantomjs, **phantomjs_config))
             time.sleep(2)
             if threads[-1].is_alive() and not g.get('phantomjs_proxy'):

@@ -8,7 +8,7 @@ version: "3.7"
 
 services:
   nginx:
-    image: nginx
+    image: nginx:alpine
     container_name: couchdb_nginx
     ports:
       - "5980:80"
