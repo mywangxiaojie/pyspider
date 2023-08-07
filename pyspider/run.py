@@ -97,6 +97,13 @@ def cli(ctx, **kwargs):
 
     logging.config.fileConfig(kwargs['logging_config'])
 
+    os.environ['COUCHDB_NAME']="True"
+    os.environ['COUCHDB_PORT_5984_TCP_ADDR']='127.0.0.1'
+    os.environ['COUCHDB_PORT_5984_TCP_PORT']="5984"
+    os.environ['COUCHDB_USER']='admin'
+    os.environ['COUCHDB_PASSWORD']='123456'
+    os.environ['COUCHDB_HTTPS']=""
+
     # get db from env
     for db in ('taskdb', 'projectdb', 'resultdb'):
         if kwargs[db] is not None:
@@ -836,12 +843,6 @@ def send_message(ctx, scheduler_rpc, project, message):
 
 
 def main():
-    # os.environ['COUCHDB_NAME']="True"
-    # os.environ['COUCHDB_PORT_5984_TCP_ADDR']='127.0.0.1'
-    # os.environ['COUCHDB_PORT_5984_TCP_PORT']="5984"
-    # os.environ['COUCHDB_USER']='admin'
-    # os.environ['COUCHDB_PASSWORD']='123456'
-    # os.environ['COUCHDB_HTTPS']="False"
     cli()
 
 if __name__ == '__main__':

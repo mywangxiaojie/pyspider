@@ -10,7 +10,6 @@ from six.moves.urllib.parse import urlparse, parse_qs
 
 
 def connect_database(url):
-    print("create database url-------------------------", url)
     """
     create database object by url
 
