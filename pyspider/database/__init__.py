@@ -220,7 +220,6 @@ def _connect_couchdb(parsed, dbtype, url):
 
     if dbtype == 'taskdb':
         from .couchdb.taskdb import TaskDB
-        print("-------------", url, params)
         return TaskDB(url, **params)
     elif dbtype == 'projectdb':
         from .couchdb.projectdb import ProjectDB
