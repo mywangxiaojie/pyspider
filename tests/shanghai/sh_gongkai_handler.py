@@ -17,19 +17,25 @@ class Handler(BaseHandler):
 
     @every(minutes=24 * 60)
     def on_start(self):
-        self.crawl('https://www.shanghai.gov.cn/nw2319/index.html', callback=self.index_page, validate_cert=False)
+        self.crawl('https://www.shanghai.gov.cn/nw12344/index.html', callback=self.list_page, validate_cert=False)
 
     @config(age=10 * 24 * 60 * 60)
     def index_page(self, response):
-        for each in response.doc('a[href^="https://www.shanghai.gov.cn/nw12344"]').items():
-            self.crawl(each.attr.href, callback=self.detail_page, validate_cert=False)
+        for each in response.doc('.tadaty-list.uli14.nowrapli.list-date li').items():
+            # print(each)
+            # print(type(each))
+            # print(each("a").attr.href)
+            self.crawl(each("a").attr.href, callback=self.detail_page, validate_cert=False)
+
+    def list_page(self):
+         for i in range(1, 288):
+            page_url="https://www.shanghai.gov.cn/nw12344/index.html"
+            if i != 1:
+                page_url = 'https://www.shanghai.gov.cn/nw12344/index_'+str(i)+".html"
+            self.crawl(page_url, callback=self.index_page, validate_cert=False)
 
     @config(priority=2)
     def detail_page(self, response):
-        print(response.doc('title').text())
-        print("----------------")
-        print(response.doc('.Article-title-zw').text())
-        print("----------------")
         label = ""
         for each in response.doc('.Article-title-zw label').items():
             label = label+"\n"+each.text()
@@ -38,10 +44,9 @@ class Handler(BaseHandler):
             "url": response.url,
             "title": response.doc('title').text(),
             "label": label.lstrip("\n"),
-            "html": response.doc('.trout-region-content'),
-            "content": response.doc('.trout-region-content').text(),
+            "content": response.doc('#ivs_content').text(),
         }
 
-    # def on_result(self, result):
-    #     if result:
-    #         return super(Handler, self).on_result(result)
+    def on_result(self, result):
+        if result:
+            return super(Handler, self).on_result(result)
