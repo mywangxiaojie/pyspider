@@ -10,7 +10,7 @@ MAINTAINER binux <roy@binux.me>
 #         && rm phantomjs.tar.bz2
 RUN mkdir -p /opt/phantomjs \
         && cd /opt/phantomjs 
-ADD ./phantomjs-2.1.1-linux-x86_64.tar.bz2 ./phantomjs.tar.bz2
+ADD ./phantomjs-2.1.1-linux-x86_64.tar.bz2 .phantomjs.tar.bz2
         
 RUN tar xavf phantomjs.tar.bz2 --strip-components 1 \
         && ln -s /opt/phantomjs/bin/phantomjs /usr/local/bin/phantomjs \
