@@ -1,5 +1,7 @@
 FROM python:3.6
-MAINTAINER binux <roy@binux.me>
+LABEL author="binux <roy@binux.me>"
+LABEL version="1.0"
+LABEL description="Docker image for running"
 
 # install phantomjs
 # RUN mkdir -p /opt/phantomjs \
@@ -10,8 +12,7 @@ MAINTAINER binux <roy@binux.me>
 #         && rm phantomjs.tar.bz2
 RUN mkdir -p /opt/phantomjs \
         && cd /opt/phantomjs 
-ADD ./phantomjs-2.1.1-linux-x86_64.tar.bz2 .phantomjs.tar.bz2
-        
+COPY phantomjs-2.1.1-linux-x86_64.tar.bz2 /opt/phantomjs/phantomjs.tar.bz2
 RUN tar xavf phantomjs.tar.bz2 --strip-components 1 \
         && ln -s /opt/phantomjs/bin/phantomjs /usr/local/bin/phantomjs \
         && rm phantomjs.tar.bz2
