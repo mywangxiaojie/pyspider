@@ -10,9 +10,11 @@ LABEL description="Docker image for running"
 #         && tar xavf phantomjs.tar.bz2 --strip-components 1 \
 #         && ln -s /opt/phantomjs/bin/phantomjs /usr/local/bin/phantomjs \
 #         && rm phantomjs.tar.bz2
-RUN mkdir -p /opt/phantomjs \
-        && cd /opt/phantomjs 
-COPY phantomjs-2.1.1-linux-x86_64.tar.bz2 /opt/phantomjs/phantomjs.tar.bz2
+
+WORKDIR /opt/phantomjs
+# RUN mkdir -p /opt/phantomjs \
+#         && cd /opt/phantomjs 
+COPY phantomjs-2.1.1-linux-x86_64.tar.bz2 phantomjs.tar.bz2
 RUN tar xavf phantomjs.tar.bz2 --strip-components 1 \
         && ln -s /opt/phantomjs/bin/phantomjs /usr/local/bin/phantomjs \
         && rm phantomjs.tar.bz2
@@ -22,7 +24,7 @@ ENV OPENSSL_CONF=/etc/ssl/
 # install nodejs
 ENV NODEJS_VERSION=8.15.0 \
     PATH=$PATH:/opt/node/bin
-WORKDIR "/opt/node"
+WORKDIR /opt/node
 RUN apt-get -qq update && apt-get -qq install -y curl ca-certificates libx11-xcb1 libxtst6 libnss3 libasound2 libatk-bridge2.0-0 libgtk-3-0 --no-install-recommends && \
     curl -sL https://nodejs.org/dist/v${NODEJS_VERSION}/node-v${NODEJS_VERSION}-linux-x64.tar.gz | tar xz --strip-components=1 && \
     rm -rf /var/lib/apt/lists/*
