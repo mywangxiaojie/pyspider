@@ -2,10 +2,17 @@ FROM python:3.6
 MAINTAINER binux <roy@binux.me>
 
 # install phantomjs
+# RUN mkdir -p /opt/phantomjs \
+#         && cd /opt/phantomjs \
+#         && wget -O phantomjs.tar.bz2 https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2 \
+#         && tar xavf phantomjs.tar.bz2 --strip-components 1 \
+#         && ln -s /opt/phantomjs/bin/phantomjs /usr/local/bin/phantomjs \
+#         && rm phantomjs.tar.bz2
 RUN mkdir -p /opt/phantomjs \
-        && cd /opt/phantomjs \
-        && wget -O phantomjs.tar.bz2 https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2 \
-        && tar xavf phantomjs.tar.bz2 --strip-components 1 \
+        && cd /opt/phantomjs 
+ADD ./phantomjs-2.1.1-linux-x86_64.tar.bz2 .
+        
+RUN tar xavf phantomjs.tar.bz2 --strip-components 1 \
         && ln -s /opt/phantomjs/bin/phantomjs /usr/local/bin/phantomjs \
         && rm phantomjs.tar.bz2
 # Fix Error: libssl_conf.so: cannot open shared object file: No such file or directory
