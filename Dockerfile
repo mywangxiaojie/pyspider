@@ -28,11 +28,11 @@ ENV OPENSSL_CONF=/etc/ssl/
 # RUN npm install puppeteer express
 ENV PATH=$PATH:/opt/node/bin
 WORKDIR /opt/node
-COPY  node-v8.15.0-linux-x64.tar.gz node-v8.15.0-linux-x64.tar.gz
-RUN apt-get -qq update && apt-get -qq install -y curl ca-certificates libx11-xcb1 libxtst6 libnss3 libasound2 libatk-bridge2.0-0 libgtk-3-0 --no-install-recommends && \ 
-    tar xz --strip-components=1 && \
-    rm -rf /var/lib/apt/lists/*
-RUN npm install puppeteer express
+COPY node-v8.15.0-linux-x64.tar.gz node-v8.15.0-linux-x64.tar.gz
+RUN tar xz --strip-components=1 && npm install --registry=http://registry.npmmirror.com && \
+    apt-get -qq update && apt-get -qq install -y curl ca-certificates libx11-xcb1 libxtst6 libnss3 libasound2 libatk-bridge2.0-0 libgtk-3-0 --no-install-recommends && \ 
+    rm -rf /var/lib/apt/lists/* && \
+    npm install puppeteer express
 
 # install requirements
 COPY requirements.txt /opt/pyspider/requirements.txt
