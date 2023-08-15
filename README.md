@@ -64,6 +64,13 @@ docker-compose up -d
 docker pull binux/pyspider:latest
 ```
 
+### (3)通过运行代码的方式运行
+* 安装phantomjs, 版本要求2.1.1
+* 安装node环境，版本要求8.5.0, 安装node扩展包puppeteer@1.15.0和express@4.18.2
+* 安装python3.6开发环境，安装项目目录下的requirements.txt扩展
+* 运行python run.py启动服务。
+备注：服务依赖的counchdb、mysql等中间件可以使用docker-compose.yaml文件中的配置通过docker容器启动
+
 
 Quickstart: [http://docs.pyspider.org/en/latest/Quickstart/](http://docs.pyspider.org/en/latest/Quickstart/)
 
