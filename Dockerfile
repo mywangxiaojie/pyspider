@@ -31,7 +31,8 @@ WORKDIR /opt/node
 COPY node-v8.15.0-linux-x64.tar.gz node-v8.15.0-linux-x64.tar.gz
 RUN tar -xvf node-v8.15.0-linux-x64.tar.gz --strip-components=1 && \
     npm install --registry=http://registry.npmmirror.com && \
-    npm install puppeteer@1.15.0 express@4.18.2
+    npm install puppeteer@1.15.0 && \
+    npm install express@4.18.2
 RUN mv /etc/apt/sources.list /etc/apt/sources.list.bakevan && \    
     echo "deb http://mirrors.aliyun.com/debian/ stretch main non-free contrib" >>/etc/apt/sources.list && \
     echo "deb-src http://mirrors.aliyun.com/debian/ stretch main non-free contrib" >>/etc/apt/sources.list && \
