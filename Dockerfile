@@ -3,6 +3,8 @@ LABEL author="binux <roy@binux.me>"
 LABEL version="1.0"
 LABEL description="Docker image for running"
 
+RUN uname -a
+
 # install phantomjs
 # RUN mkdir -p /opt/phantomjs \
 #         && cd /opt/phantomjs \
@@ -54,7 +56,7 @@ RUN mv /etc/apt/sources.list /etc/apt/sources.list.bakevan && \
     echo "deb-src http://mirrors.163.com/debian/ buster-backports main non-free contrib" >>/etc/apt/sources.list && \
     echo "deb http://mirrors.163.com/debian-security/ buster/updates main non-free contrib" >>/etc/apt/sources.list && \
     echo "deb-src http://mirrors.163.com/debian-security/ buster/updates main non-free contrib" >>/etc/apt/sources.list 
-RUN apt-get clean && apt-get update && apt-get install -y curl ca-certificates libx11-xcb1 libxtst6 libnss3 libasound2 libatk-bridge2.0-0 libgtk-3-0 --no-install-recommends && \ 
+RUN apt-get clean && apt-get update -y && apt-get upgrade && apt-get install -y curl ca-certificates libx11-xcb1 libxtst6 libnss3 libasound2 libatk-bridge2.0-0 libgtk-3-0 --no-install-recommends && \ 
     rm -rf /var/lib/apt/lists/* 
 
 # install requirements
