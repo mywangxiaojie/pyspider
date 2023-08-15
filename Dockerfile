@@ -29,7 +29,7 @@ ENV OPENSSL_CONF=/etc/ssl/
 ENV PATH=$PATH:/opt/node/bin
 WORKDIR /opt/node
 COPY node-v8.15.0-linux-x64.tar.gz node-v8.15.0-linux-x64.tar.gz
-RUN tar -xvf node-v8.15.0-linux-x64.tar.gz --strip-components=1 && \
+RUN tar -zxvf node-v8.15.0-linux-x64.tar.gz --strip-components=1 && \
     npm install --registry=http://registry.npmmirror.com && \
     npm install puppeteer@1.15.0 && \
     npm install express@4.18.2
