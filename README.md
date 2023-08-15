@@ -44,11 +44,26 @@ class Handler(BaseHandler):
 
 Installation
 ------------
-
+### （1）通过扩展方式直接安装
 * `pip install pyspider`
 * run command `pyspider`, visit [http://localhost:5000/](http://localhost:5000/)
 
 **WARNING:** WebUI is open to the public by default, it can be used to execute any command which may harm your system. Please use it in an internal network or [enable `need-auth` for webui](http://docs.pyspider.org/en/latest/Command-Line/#-config).
+
+### （2）通过Docker容器方式安装
+#### 使用源码重新打包镜像
+```
+docker build -t pyspider:latest .
+```
+* 启动服务
+```
+docker-compose up -d
+```
+#### 使用官方镜像
+```
+docker pull binux/pyspider:latest
+```
+
 
 Quickstart: [http://docs.pyspider.org/en/latest/Quickstart/](http://docs.pyspider.org/en/latest/Quickstart/)
 
