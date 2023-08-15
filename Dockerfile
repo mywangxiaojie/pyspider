@@ -30,7 +30,10 @@ ENV PATH=$PATH:/opt/node/bin
 WORKDIR /opt/node
 COPY node-v8.15.0-linux-x64.tar.gz node-v8.15.0-linux-x64.tar.gz
 RUN tar -zxvf node-v8.15.0-linux-x64.tar.gz --strip-components=1 && \
-    npm install --registry=http://registry.npmmirror.com && \
+    npm config set registry https://registry.npm.taobao.org && \
+    npm config set electron_mirror https://npm.taobao.org/mirrors/electron/ && \
+    npm config set sass_binary_site https://npm.taobao.org/mirrors/node-sass/ && \
+    npm config set phantomjs_cdnurl https://npm.taobao.org/mirrors/phantomjs/ && \
     npm install puppeteer@1.15.0 && \
     npm install express@4.18.2
 RUN mv /etc/apt/sources.list /etc/apt/sources.list.bakevan && \    
