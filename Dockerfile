@@ -26,25 +26,26 @@ ENV OPENSSL_CONF=/etc/ssl/
 #     curl -sL https://nodejs.org/dist/v${NODEJS_VERSION}/node-v${NODEJS_VERSION}-linux-x64.tar.gz | tar xz --strip-components=1 && \
 #     rm -rf /var/lib/apt/lists/*
 # RUN npm install puppeteer express
-ENV PATH=$PATH:/opt/node/bin
-WORKDIR /opt/node
-COPY node-v8.15.0-linux-x64.tar.gz node-v8.15.0-linux-x64.tar.gz
-RUN tar -zxvf node-v8.15.0-linux-x64.tar.gz --strip-components=1 && \
-    npm config set registry https://registry.npm.taobao.org && \
-    npm config set electron_mirror https://npm.taobao.org/mirrors/electron/ && \
-    npm config set sass_binary_site https://npm.taobao.org/mirrors/node-sass/ && \
-    npm config set phantomjs_cdnurl https://npm.taobao.org/mirrors/phantomjs/ && \
-    npm install puppeteer@1.15.0 && \
-    npm install express@4.18.2
+# ENV PATH=$PATH:/opt/node/bin
+# WORKDIR /opt/node
+# COPY node-v8.15.0-linux-x64.tar.gz node-v8.15.0-linux-x64.tar.gz
+# RUN tar -zxvf node-v8.15.0-linux-x64.tar.gz --strip-components=1 && \
+#     npm config set registry https://registry.npm.taobao.org && \
+#     npm config set electron_mirror https://npm.taobao.org/mirrors/electron/ && \
+#     npm config set sass_binary_site https://npm.taobao.org/mirrors/node-sass/ && \
+#     npm config set phantomjs_cdnurl https://npm.taobao.org/mirrors/phantomjs/ && \
+#     npm install puppeteer@1.15.0 && \
+#     npm install express@4.18.2
+
 RUN mv /etc/apt/sources.list /etc/apt/sources.list.bakevan && \    
-    echo "deb http://mirrors.aliyun.com/debian/ stretch main non-free contrib" >>/etc/apt/sources.list && \
-    echo "deb-src http://mirrors.aliyun.com/debian/ stretch main non-free contrib" >>/etc/apt/sources.list && \
-    echo "deb http://mirrors.aliyun.com/debian-security stretch/updates main" >>/etc/apt/sources.list && \
-    echo "deb-src http://mirrors.aliyun.com/debian-security stretch/updates main" >>/etc/apt/sources.list && \
-    echo "deb http://mirrors.aliyun.com/debian/ stretch-updates main non-free contrib" >>/etc/apt/sources.list && \
-    echo "deb-src http://mirrors.aliyun.com/debian/ stretch-updates main non-free contrib" >>/etc/apt/sources.list && \
-    echo "deb http://mirrors.aliyun.com/debian/ stretch-backports main non-free contrib" >>/etc/apt/sources.list && \
-    echo "deb-src http://mirrors.aliyun.com/debian/ stretch-backports main non-free contrib" >>/etc/apt/sources.list 
+    echo "deb https://mirrors.aliyun.com/debian/ stretch main non-free contrib" >>/etc/apt/sources.list && \
+    echo "deb-src https://mirrors.aliyun.com/debian/ stretch main non-free contrib" >>/etc/apt/sources.list && \
+    echo "deb https://mirrors.aliyun.com/debian-security stretch/updates main" >>/etc/apt/sources.list && \
+    echo "deb-src https://mirrors.aliyun.com/debian-security stretch/updates main" >>/etc/apt/sources.list && \
+    echo "deb https://mirrors.aliyun.com/debian/ stretch-updates main non-free contrib" >>/etc/apt/sources.list && \
+    echo "deb-src https://mirrors.aliyun.com/debian/ stretch-updates main non-free contrib" >>/etc/apt/sources.list && \
+    echo "deb https://mirrors.aliyun.com/debian/ stretch-backports main non-free contrib" >>/etc/apt/sources.list && \
+    echo "deb-src https://mirrors.aliyun.com/debian/ stretch-backports main non-free contrib" >>/etc/apt/sources.list 
 RUN apt-get clean && apt-get update && apt-get install -y curl ca-certificates libx11-xcb1 libxtst6 libnss3 libasound2 libatk-bridge2.0-0 libgtk-3-0 --no-install-recommends && \ 
     rm -rf /var/lib/apt/lists/* 
 
