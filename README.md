@@ -91,6 +91,12 @@ TODO
 - [ ] a visual scraping interface like [portia](https://github.com/scrapinghub/portia)
 
 
+优秀的项目
+----------
+- [https://github.com/chancechang/pySpider](https://github.com/chancechang/pySpider)
+- 
+
+
 License
 -------
 Licensed under the Apache License, Version 2.0
